@@ -2,10 +2,11 @@
 
 Bot desarrollado para el curso de complejidad algorítmica
 
-## Intregrantes
+## Integrantes
 
 * Sebastian Diaz Torres u201717471
-* Angie
+* Angie  
+* Cucho
 
 ___
 
@@ -16,6 +17,8 @@ ___
 * Un tablero de 9 x 9 recuadros;
 * 4 fichas (una por jugador);
 * 20 paredes (tablas que tapan dos casillas, se repartirán equitativamente entre el numero de jugadores)
+
+___
 
 ## Mecánica
 
@@ -33,4 +36,10 @@ En caso que un jugador quede frente a otro, este en su turno puede escoger salte
 
 ### Figura 1: Movimiento posibles considerando posiciones de muros rivales(Imagen obtenida de [cueva de lobo](https://www.cuevadelobo.com/quoridor-resena/))
 
+___
+
 **Observaciones:** Ningún recuadro debe quedar inaccesible por cause de las barreras. De la anterior, deducimos que ningún jugador podrá quedar encerrado entre barreras
+
+___
+
+## [Documentación a GoogleColab](https://colab.research.google.com/drive/1xzRO5JmERrXhO8frornhBagErcAHlmYx?usp=sharing)
