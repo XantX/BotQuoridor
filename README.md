@@ -5,8 +5,8 @@ Bot desarrollado para el curso de complejidad algorítmica
 ## Integrantes
 
 * Sebastian Diaz Torres u201717471
-* Angie  
-* Cucho
+* Angie Tomasto Cahuana u201817853
+* Richard Cucho Landeo  
 
 ___
 
@@ -27,7 +27,7 @@ Si se desea ser mas estrictos, podría restringir la llegada unicamente a la cas
 
 En su turno cada jugador deberá tomar una decision:
 
-1. Mover un espacio de form vertical u horizontal (salvo excepciones)
+1. Mover un espacio de forma vertical u horizontal (salvo excepciones)
 1. Colocar una barrera (cada barrera bloquea dos cuadros y dene colocarse de manera que lo haga perfectamente para evitar confusiones)
 
 En caso que un jugador quede frente a otro, este en su turno puede escoger salter por encima del primero, en caso de no ser posible, entonces podría mover un espacio en diagonal. Note que de esta forma puede eater ejecutando un movimiento ventajoso (por ser de dos casillas)
