@@ -12,7 +12,9 @@ def showG(G, directed = True):
         for v in range(n):
             if G[u][v] != 0:
                 g.add_edge(u, v)
-    print(list(nx.astar_path(g, 2, 0, weight = None)))
+    ##(objeto nx, del nodo llamado, a el nodo llamado, sin pesos)
+    path = list(nx.astar_path(g, 2, 0, weight = None))
+    print(path)
     nx.draw(g, with_labels = True)
     plt.show()
 
