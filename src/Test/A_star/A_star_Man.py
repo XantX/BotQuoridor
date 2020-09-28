@@ -151,6 +151,6 @@ class tablero:
 tabla = tablero(9, 9)
 tabla.createTable()
 tabla.viewTable()
-print("quiero llegar a: 0, 2")
+print("quiero llegar a: 0, 4")
 Algoritmo = A_star(8, 4, 0, 4)
 Path = Algoritmo.Neighbor(tabla.mat)
