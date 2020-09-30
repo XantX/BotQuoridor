@@ -43,20 +43,21 @@ class A_star:
                                 Final = mat[Xg + dx[i]][Yg + dy[i]]
                                 print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
                                 print("Encontrado")
-                                print(Final.NodeNumber, Final.gC) 
+                                #print(Final.NodeNumber, Final.gC) 
                                 cPath = []  
                                 Path = Final.Padre
                                 cPath.append(Final)
                                 while Path.Padre != None:
-                                    print(Path.NodeNumber, Path.gC)
-                                    Path = Path.Padre
+                                    #print(Path.NodeNumber, Path.gC)
                                     cPath.append(Path)
+                                    Path = Path.Padre
                                 return cPath
                             oSet.add(mat[Xg + dx[i]][Yg + dy[i]])
 
         return False
 
     def Search(self,nodoInx, nodoIny, nodoEndx, nodoEndy, mat):
+        #implementacion de matriz para el calculo de camino valido
         self.nIn = (nodoInx, nodoIny)
         self.nEnd = (nodoEndx , nodoEndy)
         ans = self.Neighbor(mat)

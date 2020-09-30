@@ -6,29 +6,50 @@ class PlayerAstar:
         self.Y = 0
         self.wallCount = 0
         self.Astar = A_star()
-    def SearchObjectives(self):
-        if self.X == 0 and self.Y == 4:
+
+    def SearchObjectives(self, Xp, Yp):
+        if Xp == 0 and (Yp >= 0 and Yp < 9):
             Objetives = [(8, y)for y in range(9)]
-        elif self.X == 8 and self.Y == 4:
+
+        elif Xp == 8 and (Yp >= 0 and Yp < 9):
             Objetives = [(0, y)for y in range(9)]
-        elif self.X == 4 and self.Y == 0:
+
+        elif  (Xp >= 0 and Xp < 9)and Yp == 0:
             Objetives = [(x, 8)for x in range(9)]
-        elif self.X == 4 and self.Y == 8:
+
+        elif (Xp >= 0 and Xp < 9) and Yp == 8:
             Objetives = [(x, 0)for x in range(9)]
+
         return Objetives
 
     def PathResult(self, mat):
-        NodeObjetive = self.SearchObjectives()
+        NodeObjetive = self.SearchObjectives(self.X , self.Y)
+        print(NodeObjetive)
         Paths = []
         for obj in NodeObjetive:
-            Paths.append(self.Astar.Search(self.X, self.Y, obj[0], obj[1], mat) )
-        return Paths
+            result = self.Astar.Search(self.X, self.Y, obj[0], obj[1], mat)
+            if result != False:
+                Paths.append(result)
 
-    def think(self, mat):
+        PathRes = Paths[0]
+        for i in Paths:
+            if len(i) < len(PathRes):
+                PathRes = i
+
+        return PathRes
+
+    def think(self, tablero):
         #Busca su camino
-        Paths = self.PathResult(mat)
-        print(Paths)
+        Path = self.PathResult(tablero.mat)
+
+        print("El path ganador es")
+        b = ""
+        for i in Path:
+            b += str(i.NodeNumber) + ' '
+        print(b)
+        b = ""
         #Le calcula el camino al enemigo    
+
         #Elige
 
     def setXandSetY(self, X, Y):
@@ -36,13 +57,11 @@ class PlayerAstar:
         self.Y = Y
 
 Player = PlayerAstar()
-Player.setXandSetY(0 , 4)
-objetivo = Player.SearchObjectives()
-print(objetivo)
+Player.setXandSetY(0 , 7)
 tabla = tablero(9, 9)
 tabla.createTable()
 tabla.viewTable()
 # Espacio de prueba
 #Algorimo = A_star()
 #Algorimo.Search(0 , 0, 8, 4, tabla.mat)
-Player.think(tabla.mat)
+Player.think(tabla)

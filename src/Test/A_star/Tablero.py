@@ -37,6 +37,14 @@ class tablero:
             for yC in range(self.y):
                 self.mat[xC].append(Casilla(xC, yC, number))
                 number = number + 1
+        self.Matrix = [[] for x in range(self.x * self.y)]
+        for i in range(self.x * self.y):
+            for j in range(self.x * self.y):
+                self.Matrix[i].append(1)
+    def Cruce(self, NodeNum1, NodeNum2):
+        if self.Matrix[NodeNum1][NodeNum2] == 1:
+            return True
+        return False
 
     def viewTable(self):
         b = ""
@@ -46,3 +54,5 @@ class tablero:
             print(b)
             b = ""
 
+tabla = tablero(2,2)
+tabla.createTable()
