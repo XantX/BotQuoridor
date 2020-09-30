@@ -22,12 +22,12 @@ class PlayerAstar:
 
         return Objetives
 
-    def PathResult(self, mat):
+    def PathResult(self, Tablero):
         NodeObjetive = self.SearchObjectives(self.X , self.Y)
         print(NodeObjetive)
         Paths = []
         for obj in NodeObjetive:
-            result = self.Astar.Search(self.X, self.Y, obj[0], obj[1], mat)
+            result = self.Astar.Search(self.X, self.Y, obj[0], obj[1], Tablero)
             if result != False:
                 Paths.append(result)
 
@@ -40,7 +40,7 @@ class PlayerAstar:
 
     def think(self, tablero):
         #Busca su camino
-        Path = self.PathResult(tablero.mat)
+        Path = self.PathResult(tablero)
 
         print("El path ganador es")
         b = ""
@@ -61,7 +61,12 @@ Player.setXandSetY(0 , 7)
 tabla = tablero(9, 9)
 tabla.createTable()
 tabla.viewTable()
+tabla.setWall(34, 43) 
+tabla.setWall(33, 42) 
+tabla.setWall(39, 40) 
+tabla.setWall(73, 74) 
 # Espacio de prueba
 #Algorimo = A_star()
 #Algorimo.Search(0 , 0, 8, 4, tabla.mat)
+
 Player.think(tabla)

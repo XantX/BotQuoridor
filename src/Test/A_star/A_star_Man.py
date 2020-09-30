@@ -6,7 +6,7 @@ class A_star:
         self.nIn = (0, 0)
         self.nEnd = (0, 0)
 
-    def Neighbor(self, mat):
+    def Neighbor(self, mat, Tablero):
         dx = [-1, 0, 1, 0]
         dy = [0, 1, 0, -1]
         n = len(mat)
@@ -15,11 +15,17 @@ class A_star:
         Xg = self.nIn[0]
         Yg = self.nIn[1]
         def valid(i):
+            #error
             n = len(mat)
             ConditionX = Xg + dx[i] < n and Xg + dx[i] >= 0
             ConditionY = Yg + dy[i] < n and Yg + dy[i] >= 0
-
-            return  ConditionX and ConditionY and not cSet[mat[Xg + dx[i]][Yg + dy[i]].NodeNumber]
+            if not (ConditionX and ConditionY):
+                return False
+            elif cSet[mat[Xg + dx[i]][Yg + dy[i]].NodeNumber]:
+                return False
+            elif not Tablero.Cruce(Ganador.NodeNumber, mat[Xg + dx[i]][Yg + dy[i]].NodeNumber):
+                return False
+            return  True
 
         oSet.add(mat[Xg][Yg])
         terminado = False
@@ -43,12 +49,12 @@ class A_star:
                                 Final = mat[Xg + dx[i]][Yg + dy[i]]
                                 print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
                                 print("Encontrado")
-                                #print(Final.NodeNumber, Final.gC) 
+                                print(Final.NodeNumber, Final.gC) 
                                 cPath = []  
                                 Path = Final.Padre
                                 cPath.append(Final)
                                 while Path.Padre != None:
-                                    #print(Path.NodeNumber, Path.gC)
+                                    print(Path.NodeNumber, Path.gC)
                                     cPath.append(Path)
                                     Path = Path.Padre
                                 return cPath
@@ -56,11 +62,11 @@ class A_star:
 
         return False
 
-    def Search(self,nodoInx, nodoIny, nodoEndx, nodoEndy, mat):
+    def Search(self,nodoInx, nodoIny, nodoEndx, nodoEndy, Tablero):
         #implementacion de matriz para el calculo de camino valido
         self.nIn = (nodoInx, nodoIny)
         self.nEnd = (nodoEndx , nodoEndy)
-        ans = self.Neighbor(mat)
+        ans = self.Neighbor(Tablero.mat, Tablero)
         return ans
 
 class ListaMod:
@@ -103,10 +109,10 @@ class ListaMod:
                     i.SethCUp(Ganador)
                     break
 
-#tabla = tablero(9, 9)
+#tabla = tablero(4, 4)
 #tabla.createTable()
 #tabla.viewTable()
 
 #print("quiero llegar a: 0, 4")
 #Algoritmo = A_star()
-#Path = Algoritmo.Search(3, 2,0, 0, tabla.mat) 
+#Path = Algoritmo.Search(3, 2,0, 0, tabla) 
