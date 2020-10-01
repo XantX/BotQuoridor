@@ -8,6 +8,7 @@ class Casilla(object):
         self.hC = 0
         self.fC = 0 
         self.Padre = None
+        self.modify = False
 
     def SethC(self, xO, yO, casilla):
         self.gC = 1 + casilla.gC 
@@ -50,6 +51,12 @@ class tablero:
     def setWall(self, Node1,Node2):
         self.Matrix[Node1][Node2] = 0
         self.Matrix[Node2][Node1] = 0
+        self.statusMod(True)
+
+
+    def statusMod(self, update):
+        self.modify = update
+        return self.modify
         
     def viewTable(self):
         b = ""
