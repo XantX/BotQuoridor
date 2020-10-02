@@ -73,7 +73,7 @@ class PlayerAstar:
         self.Path.pop(0)
 
         if self.Path == []:
-            ans = True
+            return ans, True
         
         print("El path que quedo es")
         b = ""
@@ -81,7 +81,7 @@ class PlayerAstar:
             b += str(i.NodeNumber) + ' '
         print(b)
         b = ""
-        return ans 
+        return ans, False
 
     def setXandSetY(self, X, Y):
         self.X = X

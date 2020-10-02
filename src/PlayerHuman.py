@@ -39,7 +39,18 @@ class Human:
         def valid(i):
             ConditionX = self.X + dx[i] < n and self.X + dx[i] >= 0
             ConditionY = self.Y + dy[i] < n and self.Y + dy[i] >= 0
-            return ConditionY and ConditionX 
+
+            if ConditionX and ConditionY:
+                print("entre al falso")
+                N1 = tablero.mat[self.X][self.Y].NodeNumber
+                N2 = tablero.mat[self.X + dx[i]][self.Y + dy[i]].NodeNumber
+                print("cruce en tablero",tablero.Cruce(N1, N2))
+                if tablero.Cruce(N1,N2):
+                    return True
+                else:
+                    return False
+
+            return False 
         
         print("estoy en la casilla", self.X, self.Y)
         print("up , right, down, left")
@@ -78,23 +89,49 @@ class Human:
                     validOpcion = True
                 else:
                     print("no se puede ir ahi")
+    def setMuros(self, tablero):
+        a, b = input("un muro entre los numeros de casilla").split()
+        a = int(a)
+        b = int(b)
+        n = len(tablero.mat)
+        def valido():
+            if a < n*n and a >= 0 and b < n*n and b >= 0:
+                return True
+            else:
+                return False
+        while not valido():
+            print("el par no es valido")
+            a, b = input("un muro entre los numeros de casilla").split()
+            a = int(a)
+            b = int(b)
+        tablero.setWall(a, b)
 
-        
     def think(self, tablero):
+        
         print("elige una opcion")
         print("1) mover")
         print("2) muro")
         print(self.NodeObjetive)
         opcion = input("--->")
+        while int(opcion) < 1 or int(opcion) > 2:
+            print("opcion invalida")
+            print("1) mover")
+            print("2) muro")
+            opcion = input("--->")
+
         if opcion == "1":
             ans  = self.move(tablero)
             if self.Win():
-                ans = True
-            print(ans)
+                return ans, True
+            else:
+                return ans, False
             return ans 
         if opcion == "2":
             print("muro")
-            return 0 , 0
+            self.setMuros(tablero)
+            ans = (0, 0)
+            
+            return ans,False  
             #return setMuro()
 
 
