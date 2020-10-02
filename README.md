@@ -6,7 +6,7 @@ Bot desarrollado para el curso de complejidad algorítmica
 
 * Sebastian Diaz Torres u201717471
 * Angie
-
+* Richard
 ___
 
 ## Enunciado
