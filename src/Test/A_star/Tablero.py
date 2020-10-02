@@ -73,9 +73,18 @@ class tablero:
         
     def viewTable(self):
         b = ""
+        agregado = False
+        print(self.PlayerArrPos)
         for x in range(self.x):
             for y in range(self.y):
-                b += str(self.mat[x][y].NodeNumber) + '\t'
+                agregado= False
+                for i in self.PlayerArrPos:
+                    if x == i[0] and y == i[1]:
+                        b += '#' + '\t'
+                        agregado = True
+                if not agregado:
+                    b += str(self.mat[x][y].NodeNumber) + '\t'
+
             print(b)
             b = ""
 

@@ -48,9 +48,9 @@ class A_star:
                             if (Xg + dx[i]) == self.nEnd[0] and (Yg + dy[i]) == self.nEnd[1]:
                                 terminado = True
                                 Final = cas
-                                print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
-                                print("Encontrado")
-                                print(Final.NodeNumber, Final.gC) 
+                                #print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
+                                #print("Encontrado")
+                                #print(Final.NodeNumber, Final.gC) 
                                 cPath = []  
                                 Path = Final.Padre
                                 cPath.append(Final)

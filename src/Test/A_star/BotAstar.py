@@ -10,9 +10,8 @@ class PlayerAstar:
         self.PlayerNum = num 
         self.xTb = xTb
         self.yTb = yTb
-
+        self.NodeObjetive = []
     def SearchObjectives(self, Xp, Yp):
-        print(Xp, Yp)
         if Xp == 0 and (Yp >= 0 and Yp < self.yTb):
             Objetives = [(self.xTb - 1, y)for y in range(self.yTb)]
 
@@ -28,10 +27,11 @@ class PlayerAstar:
         return Objetives
 
     def PathResult(self, Tablero, X , Y ):
-        NodeObjetive = self.SearchObjectives(X , Y)
-        print(NodeObjetive)
+        if self.NodeObjetive == []:
+            self.NodeObjetive = self.SearchObjectives(X , Y)
+        print(self.NodeObjetive)
         Paths = []
-        for obj in NodeObjetive:
+        for obj in self.NodeObjetive:
             result = self.Astar.Search(X, Y, obj[0], obj[1], Tablero)
             if result != False:
                 Paths.append(result)
@@ -55,7 +55,7 @@ class PlayerAstar:
         #Busca su camino
         #verificar si la tabla fue modificada en el turno anterior
         if self.Path == [] or tablero.modify:
-            print(self.PlayerNum, self.X, self.Y)
+            #print(self.PlayerNum, self.X, self.Y)
             self.Path = self.PathResult(tablero, self.X, self.Y)
             self.Path.reverse()
 
