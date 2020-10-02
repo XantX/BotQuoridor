@@ -1,5 +1,6 @@
 from Test.A_star.Tablero import * 
-#Pruebas de implementación sin librerías
+#from Tablero import * 
+#Prueas de implementación sin librerías
 class A_star:
     def __init__(self):
         self.nIn = (0, 0)
@@ -25,8 +26,8 @@ class A_star:
             elif not Tablero.Cruce(Ganador.NodeNumber, mat[Xg + dx[i]][Yg + dy[i]].NodeNumber):
                 return False
             return  True
-
-        oSet.add(mat[Xg][Yg])
+        init = mat[Xg][Yg]
+        oSet.add(init)
         terminado = False
         while not oSet.emptyS() and terminado != True:
             Ganador = oSet.MayorF()
@@ -41,11 +42,12 @@ class A_star:
                             oSet.update(Ganador, mat[Xg + dx[i]][Yg + dy[i]])
                         else:
                             #Se quedo en el enlace de padres
-                            mat[Xg + dx[i]][Yg + dy[i]].SethC(self.nEnd[0], self.nEnd[1], Ganador)
+                            cas = mat[Xg + dx[i]][Yg + dy[i]] 
+                            cas.SethC(self.nEnd[0], self.nEnd[1], Ganador)
                             #print("Hermano Infectado", mat[Xg + dx[i]][Yg + dy[i]].NodeNumber)
                             if (Xg + dx[i]) == self.nEnd[0] and (Yg + dy[i]) == self.nEnd[1]:
                                 terminado = True
-                                Final = mat[Xg + dx[i]][Yg + dy[i]]
+                                Final = cas
                                 print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
                                 print("Encontrado")
                                 print(Final.NodeNumber, Final.gC) 
@@ -53,11 +55,11 @@ class A_star:
                                 Path = Final.Padre
                                 cPath.append(Final)
                                 while Path.Padre != None:
-                                    print(Path.NodeNumber, Path.gC)
+                                    #print(Path.NodeNumber, Path.gC)
                                     cPath.append(Path)
                                     Path = Path.Padre
                                 return cPath
-                            oSet.add(mat[Xg + dx[i]][Yg + dy[i]])
+                            oSet.add(cas)
 
         return False
 
@@ -114,4 +116,6 @@ class ListaMod:
 
 #print("quiero llegar a: 0, 4")
 #Algoritmo = A_star()
+#Algoritmo2 = A_star()
 #Path = Algoritmo.Search(3, 2,0, 0, tabla) 
+#Path2 = Algoritmo2.Search(3, 2,0, 0, tabla) 

@@ -65,6 +65,11 @@ class tablero:
     def statusMod(self, update):
         self.modify = update
         return self.modify
+    def RestartTable(self):
+        for i in range(self.x):
+            for j in range(self.y):
+                self.mat[i][j].Padre = None
+                self.mat[i][j].gC = 0
         
     def viewTable(self):
         b = ""

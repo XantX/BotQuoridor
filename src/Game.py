@@ -10,7 +10,7 @@ class Game:
 
     def CreatePlayers(self):
         for i in range(self.Cant):
-            self.Players.append(PlayerAstar(i))
+            self.Players.append(PlayerAstar(i, self.TABLERO.x, self.TABLERO.y))
         self.SetPosition()
         
     def SetPosition(self):
@@ -21,6 +21,7 @@ class Game:
 
     def Turno(self, Players):
         movement = Players.think(self.TABLERO)
+        self.TABLERO.RestartTable()
         print("movement", movement)
         if movement == True:
             self.Winner = True
@@ -35,12 +36,10 @@ class Game:
         self.TABLERO.viewTable()
         while not self.Winner:
             print(self.Winner)
-            input("Se paro antes de sacar player")
-            Player = self.Players[1]
+            Player = self.Players[0]
             self.Players.popleft()
             self.Turno(Player)
             self.Players.append(Player)
-            input("se para luego de turno")
         print("Ya gano")
 Juego = Game(9, 9, 2)
 Juego.main()
