@@ -1,12 +1,12 @@
-from A_star_Man import *
-from Tablero import *
+from Test.A_star.A_star_Man import *
 class PlayerAstar:
-    def __init__(self):
+    def __init__(self, num):
         self.X = 0
         self.Y = 0
         self.wallCount = 0
         self.Astar = A_star()
         self.Path = []
+        self.PlayerNum = num 
 
     def SearchObjectives(self, Xp, Yp):
         if Xp == 0 and (Yp >= 0 and Yp < 9):
@@ -49,6 +49,9 @@ class PlayerAstar:
     def think(self, tablero):
         #Busca su camino
         #verificar si la tabla fue modificada en el turno anterior
+        input("en la pensada")
+        print(self.PlayerNum, self.X, self.Y)
+        print(self.Path)
         if self.Path == [] or tablero.modify:
             self.Path = self.PathResult(tablero, self.X, self.Y)
             self.Path.reverse()
@@ -65,30 +68,30 @@ class PlayerAstar:
         #Elige
         ans = self.move(self.Path[0])
         self.Path.pop(0)
+
+        if self.Path == []:
+            ans = True
+        
+        print("El path que quedo es")
+        b = ""
+        for i in self.Path:
+            b += str(i.NodeNumber) + ' '
+        print(b)
+        b = ""
         return ans 
 
     def setXandSetY(self, X, Y):
         self.X = X
         self.Y = Y
 
-Player = PlayerAstar()
-Player.setXandSetY(0 , 7)
-tabla = tablero(9, 9)
-tabla.createTable()
-tabla.viewTable()
+#Player = PlayerAstar()
+#Player.setXandSetY(0 , 7)
+#tabla = tablero(9, 9)
+#tabla.createTable()
+#tabla.viewTable()
 #muros de ejemplo
-tabla.setWall(34, 43) 
-tabla.setWall(33, 42) 
-tabla.setWall(39, 40) 
-tabla.setWall(73, 74) 
-tabla.setWall(72, 63)
-tabla.setWall(73, 64)
-tabla.setWall(80, 71)
-tabla.setWall(79, 70)
-tabla.setWall(76, 67)
-tabla.setWall(79, 78)
 # Espacio de prueba
 #Algorimo = A_star()
 #Algorimo.Search(0 , 0, 8, 4, tabla.mat)
 
-Player.think(tabla)
+#Player.think(tabla)

@@ -8,7 +8,6 @@ class Casilla(object):
         self.hC = 0
         self.fC = 0 
         self.Padre = None
-        self.modify = False
 
     def SethC(self, xO, yO, casilla):
         self.gC = 1 + casilla.gC 
@@ -30,6 +29,8 @@ class tablero:
     def __init__(self, X, Y):
         self.x = X
         self.y = Y
+        self.modify = False
+        self.PlayerArrPos = []
 
     def createTable(self):
         self.mat = [[] for x in range(self.x)]
@@ -48,6 +49,13 @@ class tablero:
         if self.Matrix[NodeNum1][NodeNum2] == 1:
             return True
         return False
+    def setPlayerPosinit(self, Xp, Yp):
+        self.PlayerArrPos.append([Xp, Yp])
+
+    def setPlayerPos(self, Xp, Yp, numberPl):
+            self.PlayerArrPos[numberPl][0] += Xp
+            self.PlayerArrPos[numberPl][1] += Yp
+
     def setWall(self, Node1,Node2):
         self.Matrix[Node1][Node2] = 0
         self.Matrix[Node2][Node1] = 0

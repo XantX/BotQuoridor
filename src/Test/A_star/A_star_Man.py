@@ -1,5 +1,4 @@
-from queue import PriorityQueue
-from Tablero import *
+from Test.A_star.Tablero import * 
 #Pruebas de implementación sin librerías
 class A_star:
     def __init__(self):
