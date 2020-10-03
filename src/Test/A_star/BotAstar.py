@@ -1,38 +1,43 @@
-from A_star_Man import *
-from Tablero import *
+from src.Test.A_star.A_star_Man import *
+#from A_star_Man import *
 class PlayerAstar:
-    def __init__(self):
+    def __init__(self, num, xTb, yTb):
         self.X = 0
         self.Y = 0
         self.wallCount = 0
         self.Astar = A_star()
         self.Path = []
-
+        self.PlayerNum = num 
+        self.xTb = xTb
+        self.yTb = yTb
+        self.NodeObjetive = []
     def SearchObjectives(self, Xp, Yp):
-        if Xp == 0 and (Yp >= 0 and Yp < 9):
-            Objetives = [(8, y)for y in range(9)]
+        if Xp == 0 and (Yp >= 0 and Yp < self.yTb):
+            Objetives = [(self.xTb - 1, y)for y in range(self.yTb)]
 
-        elif Xp == 8 and (Yp >= 0 and Yp < 9):
-            Objetives = [(0, y)for y in range(9)]
+        elif Xp == self.xTb - 1 and (Yp >= 0 and Yp < self.yTb):
+            Objetives = [(0, y)for y in range(self.yTb)]
 
-        elif  (Xp >= 0 and Xp < 9)and Yp == 0:
-            Objetives = [(x, 8)for x in range(9)]
+        elif  (Xp >= 0 and Xp < self.xTb)and Yp == 0:
+            Objetives = [(x, self.ytb - 1)for x in range(self.xTb)]
 
-        elif (Xp >= 0 and Xp < 9) and Yp == 8:
-            Objetives = [(x, 0)for x in range(9)]
+        elif (Xp >= 0 and Xp < self.xTb) and Yp == self.yTb - 1:
+            Objetives = [(x, 0)for x in range(self.xTb)]
 
         return Objetives
 
     def PathResult(self, Tablero, X , Y ):
-        NodeObjetive = self.SearchObjectives(X , Y)
-        print(NodeObjetive)
+        if self.NodeObjetive == []:
+            self.NodeObjetive = self.SearchObjectives(X , Y)
+        print(self.NodeObjetive)
         Paths = []
-        for obj in NodeObjetive:
+        for obj in self.NodeObjetive:
             result = self.Astar.Search(X, Y, obj[0], obj[1], Tablero)
             if result != False:
                 Paths.append(result)
 
         PathRes = Paths[0]
+
         for i in Paths:
             if len(i) < len(PathRes):
                 PathRes = i
@@ -50,6 +55,7 @@ class PlayerAstar:
         #Busca su camino
         #verificar si la tabla fue modificada en el turno anterior
         if self.Path == [] or tablero.modify:
+            #print(self.PlayerNum, self.X, self.Y)
             self.Path = self.PathResult(tablero, self.X, self.Y)
             self.Path.reverse()
 
@@ -65,30 +71,33 @@ class PlayerAstar:
         #Elige
         ans = self.move(self.Path[0])
         self.Path.pop(0)
-        return ans 
+
+        if self.Path == []:
+            return ans, True
+        
+        print("El path que quedo es")
+        b = ""
+        for i in self.Path:
+            b += str(i.NodeNumber) + ' '
+        print(b)
+        b = ""
+        return ans, False
 
     def setXandSetY(self, X, Y):
         self.X = X
         self.Y = Y
 
-Player = PlayerAstar()
-Player.setXandSetY(0 , 7)
-tabla = tablero(9, 9)
-tabla.createTable()
-tabla.viewTable()
+#tabla = tablero(9, 9)
+#tabla.createTable()
+#tabla.viewTable()
+#Player = PlayerAstar(1, 9, 9)
+#Player.setXandSetY(0 , 4)
+#Player2 = PlayerAstar(2, 9, 9)
+#Player2.setXandSetY(8, 4)
 #muros de ejemplo
-tabla.setWall(34, 43) 
-tabla.setWall(33, 42) 
-tabla.setWall(39, 40) 
-tabla.setWall(73, 74) 
-tabla.setWall(72, 63)
-tabla.setWall(73, 64)
-tabla.setWall(80, 71)
-tabla.setWall(79, 70)
-tabla.setWall(76, 67)
-tabla.setWall(79, 78)
 # Espacio de prueba
 #Algorimo = A_star()
 #Algorimo.Search(0 , 0, 8, 4, tabla.mat)
-
-Player.think(tabla)
+#Player.think(tabla)
+#tabla.RestartTable()
+#Player2.think(tabla)

@@ -8,7 +8,6 @@ class Casilla(object):
         self.hC = 0
         self.fC = 0 
         self.Padre = None
-        self.modify = False
 
     def SethC(self, xO, yO, casilla):
         self.gC = 1 + casilla.gC 
@@ -30,6 +29,8 @@ class tablero:
     def __init__(self, X, Y):
         self.x = X
         self.y = Y
+        self.modify = False
+        self.PlayerArrPos = []
 
     def createTable(self):
         self.mat = [[] for x in range(self.x)]
@@ -48,6 +49,13 @@ class tablero:
         if self.Matrix[NodeNum1][NodeNum2] == 1:
             return True
         return False
+    def setPlayerPosinit(self, Xp, Yp):
+        self.PlayerArrPos.append([Xp, Yp])
+
+    def setPlayerPos(self, Xp, Yp, numberPl):
+            self.PlayerArrPos[numberPl][0] += Xp
+            self.PlayerArrPos[numberPl][1] += Yp
+
     def setWall(self, Node1,Node2):
         self.Matrix[Node1][Node2] = 0
         self.Matrix[Node2][Node1] = 0
@@ -57,12 +65,26 @@ class tablero:
     def statusMod(self, update):
         self.modify = update
         return self.modify
+    def RestartTable(self):
+        for i in range(self.x):
+            for j in range(self.y):
+                self.mat[i][j].Padre = None
+                self.mat[i][j].gC = 0
         
     def viewTable(self):
         b = ""
+        agregado = False
+        print(self.PlayerArrPos)
         for x in range(self.x):
             for y in range(self.y):
-                b += str(self.mat[x][y].NodeNumber) + '\t'
+                agregado= False
+                for i in self.PlayerArrPos:
+                    if x == i[0] and y == i[1]:
+                        b += '#' + '\t'
+                        agregado = True
+                if not agregado:
+                    b += str(self.mat[x][y].NodeNumber) + '\t'
+
             print(b)
             b = ""
 

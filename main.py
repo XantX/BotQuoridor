@@ -1,3 +1,4 @@
 ### Aquí debe de comenzar el trabajo
-
-print("Hola")
+from src.Game import *
+Juego = Game(9, 9, 2)
+Juego.main()
