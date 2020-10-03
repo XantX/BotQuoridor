@@ -1,4 +1,4 @@
-from Test.A_star.A_star_Man import *
+from src.Test.A_star.A_star_Man import *
 #from A_star_Man import *
 class PlayerAstar:
     def __init__(self, num, xTb, yTb):

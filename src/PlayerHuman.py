@@ -1,4 +1,4 @@
-from Test.A_star.Tablero import * 
+from src.Test.A_star.Tablero import * 
 class Human:
     def __init__(self, num, xTb, yTb):
         self.PlayerNum = num
@@ -90,7 +90,7 @@ class Human:
                 else:
                     print("no se puede ir ahi")
     def setMuros(self, tablero):
-        a, b = input("un muro entre los numeros de casilla").split()
+        a, b = input("un muro entre los numeros de casilla N N :").split()
         a = int(a)
         b = int(b)
         n = len(tablero.mat)
@@ -101,7 +101,7 @@ class Human:
                 return False
         while not valido():
             print("el par no es valido")
-            a, b = input("un muro entre los numeros de casilla").split()
+            a, b = input("un muro entre los numeros de casilla N N :").split()
             a = int(a)
             b = int(b)
         tablero.setWall(a, b)

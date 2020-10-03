@@ -1,7 +1,7 @@
 #from Test.A_star.Tablero import * 
-from Test.A_star.BotAstar import *
+from src.Test.A_star.BotAstar import *
 from collections import deque
-from PlayerHuman import *
+from src.PlayerHuman import *
 import time 
 import os 
 import platform
@@ -56,6 +56,5 @@ class Game:
             self.Turno(Player)
             self.Players.append(Player)
         self.TABLERO.viewTable()
-        print("Ya gano")
-Juego = Game(9, 9, 2)
-Juego.main()
+        print("Ya gano", Player.PlayerNum)
+

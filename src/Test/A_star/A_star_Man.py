@@ -1,4 +1,4 @@
-from Test.A_star.Tablero import * 
+from src.Test.A_star.Tablero import * 
 #from Tablero import * 
 #Prueas de implementación sin librerías
 class A_star:
