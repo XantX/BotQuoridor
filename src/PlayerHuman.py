@@ -7,6 +7,7 @@ class Human:
         self.xTb = xTb
         self.yTb = yTb
         self.NodeObjetive = []
+
     def setXandSetY(self, x, y):
         self.X = x
         self.Y = y

@@ -1,16 +1,17 @@
-#from Test.A_star.Tablero import * 
-from src.Test.A_star.BotAstar import *
+from tablero import *
+from Human import *
+from BotAstar import *
 from collections import deque
-from src.PlayerHuman import *
 import time 
 import os 
 import platform
 class Game:
-    def __init__(self, X, Y, CantJugadores):
+    def __init__(self, X, CantJugadores):
         self.Cant = CantJugadores
         self.Players = deque()
         self.Winner = False
-        self.TABLERO = tablero(X, Y)
+        self.TABLERO = tablero(X)
+
     def ClearPantalla(self):
         time.sleep(1)
         if platform.system() == 'Windows':
@@ -18,13 +19,8 @@ class Game:
         else:
             os.system('clear')
 
-    def CreatePlayers(self):
-        #for i in range(self.Cant):
-        #self.Players.append(PlayerAstar(i, self.TABLERO.x, self.TABLERO.y))
-        self.Players.append(PlayerAstar(0, self.TABLERO.x, self.TABLERO.y))
-        self.Players.append(Human(1, self.TABLERO.x, self.TABLERO.y))
-        self.SetPosition()
-        
+    def CreateBots(self): 
+
     def SetPosition(self):
         self.Players[0].setXandSetY(0, 4)
         self.TABLERO.setPlayerPosinit(0 , 4)

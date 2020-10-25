@@ -1,11 +1,13 @@
 class Player:
-    def __init__(self, num, hTb, wTb):
+    def __init__(self, num, hTb):
         self.PlayerNum = num
-        self.x = 0
-        self.y = 0
+        self.X = 0
+        self.Y = 0
         self.xTb = hTb
-        self.yTb = wTb
+        self.yTb = hTb 
         self.NodeObjetive = []
+        self.Path = []
+        
 
     def setXandSetY(self, posx, posy):
         self.X = posx
@@ -20,7 +22,7 @@ class Player:
             Objetives = [(0, y)for y in range(self.yTb)]
 
         elif  (Xp >= 0 and Xp < self.xTb)and Yp == 0:
-            Objetives = [(x, self.ytb - 1)for x in range(self.xTb)]
+            Objetives = [(x, self.yTb - 1)for x in range(self.xTb)]
 
         elif (Xp >= 0 and Xp < self.xTb) and Yp == self.yTb - 1:
             Objetives = [(x, 0)for x in range(self.xTb)]

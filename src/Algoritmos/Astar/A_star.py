@@ -1,4 +1,5 @@
-from Tablero import *
+from Algoritmos.Astar.Tablero import *
+# from Tablero import *
 class A_star:
     def __init__(self, n):
         self.nIn = (0, 0)
@@ -52,10 +53,13 @@ class A_star:
                             return cPath
                         oSet.add(neighbour)
         return False
+
     def Search(self,Inx, Iny, Endx, Endy,matrix):
         self.nIn = (Inx, Iny)
         self.nEnd = (Endx, Endy)
         ans = self.sol(matrix) 
+        self.tablero.RestartTable()
+        print("todo correcto")
         return ans
         
 
@@ -98,9 +102,10 @@ class ListaMod:
                 if i.gC > Ganador.gC + 1:
                     i.SethCUp(Ganador)
                     break
-#g = [[]for i in range(81)]
-#for x in range(81):
-#    for y in range(81):
-#        g[x].append(1)
-#algo = A_star(9)
-#algo.Search(0, 4, 8, 4, g)
+# print("Recivido")
+# g = [[]for i in range(81)]
+# for x in range(81):
+   # for y in range(81):
+       # g[x].append(1)
+# algo = A_star(9)
+# algo.Search(0, 4, 8, 4, g)

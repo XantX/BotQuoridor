@@ -3,12 +3,26 @@ class tabla():
         self.h = h
         self.tablero = [[] for i in range(h)]
         self.createTable()
+
+    def RestartTable(self):
+        for i in range(self.h):
+            for j in range(self.h):
+                self.tablero[i][j].Padre = None
+                self.tablero[i][j].gC = 0
     def createTable(self):
         number = 0
         for xC in range(self.h):
             for yC in range(self.h):
                 self.tablero[xC].append(Casilla(xC,yC,number))
                 number += 1
+        b = ""
+
+        for x in range(self.h):
+            for y in range(self.h):
+                b += str(self.tablero[x][y].NodeNumber) + '\t'
+            print(b)
+            b = ""
+
 class Casilla():
     def __init__(self, xC, yC, nN):
         self.NodeNumber = nN
