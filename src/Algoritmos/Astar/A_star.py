@@ -1,4 +1,5 @@
-from Algoritmos.Astar.Tablero import *
+from src.Algoritmos.Astar.Tablero import *
+# from Algoritmos.Astar.Tablero import *
 # from Tablero import *
 class A_star:
     def __init__(self, n):
@@ -58,8 +59,7 @@ class A_star:
         self.nIn = (Inx, Iny)
         self.nEnd = (Endx, Endy)
         ans = self.sol(matrix) 
-        self.tablero.RestartTable()
-        print("todo correcto")
+        self.tableroobj.RestartTable()
         return ans
         
 

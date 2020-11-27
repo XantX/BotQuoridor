@@ -1,9 +1,15 @@
+import pygame as pg
+
 class tablero:
     def __init__(self,n):
         self.n = n
         self.modify = False
         self.PlayerArrPos = [] 
         self.createTable()
+        self.cont = 0
+        self.arry_lineasIz = []
+        self.arry_lineasDer = []
+
     def createTable(self):
         self.tablero = [[] for x in range(self.n)]
         number = 0
@@ -16,7 +22,7 @@ class tablero:
         for i in range(cantNodos):
             for j in range(cantNodos):
                 self.Matrix[i].append(1)
-
+               
     def statusMod(self, update):
         self.modify = update
         return self.modify
@@ -42,8 +48,11 @@ class tablero:
         self.PlayerArrPos.append([Xp, Yp])
 
     def setPlayerPos(self, Xp, Yp, numberPl):
-            self.PlayerArrPos[numberPl][0] += Xp
-            self.PlayerArrPos[numberPl][1] += Yp
+        
+        # if Xp == 0 and Yp == 0:
+            # self.statusMod(False)
+        self.PlayerArrPos[numberPl][0] += Xp
+        self.PlayerArrPos[numberPl][1] += Yp
 
     def setWall(self, Node1,Node2):
         self.Matrix[Node1][Node2] = 0

@@ -1,5 +1,6 @@
-from Player.Player import *
-from Algoritmos.Astar.A_star import * 
+# from Player.Player import *
+from src.Player.Player import *
+from src.Algoritmos.Astar.A_star import * 
 class BotAstar(Player):
     def PathResult(self, Tablero, X , Y ):
         self.Astar = A_star(self.xTb)
@@ -28,7 +29,8 @@ class BotAstar(Player):
         return x, y
 
     def think(self, tablero):
-        if self.Path == []:
+        print("Tablero se modifico:",tablero.modify)
+        if   self.Path == [] or tablero.modify :
             #print(self.PlayerNum, self.X, self.Y)
             self.Path = self.PathResult(tablero.Matrix, self.X, self.Y)
             self.Path.reverse()

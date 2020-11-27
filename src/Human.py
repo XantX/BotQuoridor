@@ -1,5 +1,6 @@
-from Player.Player import *
-from tablero import * 
+# from Player.Player import *
+from src.Player.Player import *
+from src.tablero import * 
 class Human(Player):
     def move(self, Tablero):
         dx = [-1, 0, 1, 0]

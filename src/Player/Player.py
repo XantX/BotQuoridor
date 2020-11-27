@@ -7,6 +7,7 @@ class Player:
         self.yTb = hTb 
         self.NodeObjetive = []
         self.Path = []
+        print("me cree", num)
         
 
     def setXandSetY(self, posx, posy):

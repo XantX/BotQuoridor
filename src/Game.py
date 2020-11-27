@@ -1,7 +1,10 @@
-from tablero import *
-from Human import *
-from BotAstar import *
+from src.tablero import *
+
+from src.Human import *
+from src.BotAstar import *
+
 from collections import deque
+import pygame as pg
 import time 
 import os 
 import platform
@@ -10,7 +13,19 @@ class Game:
         self.Cant = CantJugadores
         self.Players = deque()
         self.Winner = False
+        ## Crea tablero
         self.TABLERO = tablero(X)
+        ## Crea jugador humano y bot
+        self.Human = Human(0,X)
+        self.Bot = BotAstar(1,X)
+        self.Human.setXandSetY(0,4)
+        self.Bot.setXandSetY(8,4)
+        ### Insertar a los jugador en el tablero 
+        self.Players.append(self.Human)
+        self.Players.append(self.Bot)
+        ### Le da sus posiciones iniciales
+        self.TABLERO.setPlayerPosinit(0,4)
+        self.TABLERO.setPlayerPosinit(8,4)
 
     def ClearPantalla(self):
         time.sleep(1)
@@ -19,38 +34,31 @@ class Game:
         else:
             os.system('clear')
 
-    def CreateBots(self): 
-
-    def SetPosition(self):
-        self.Players[0].setXandSetY(0, 4)
-        self.TABLERO.setPlayerPosinit(0 , 4)
-        self.Players[1].setXandSetY(8, 4)
-        self.TABLERO.setPlayerPosinit(8, 4)
-
     def Turno(self, Players):
         movement = Players.think(self.TABLERO)
-        self.TABLERO.RestartTable()
+        #self.TABLERO.RestartTable()
         print("movement", movement)
         if movement[1] == True:
             self.Winner = True
             self.TABLERO.setPlayerPos(movement[0][0],movement[0][1],Players.PlayerNum)
         else:
-            #print("estaba en")
-            #print(Players.X, Players.Y)
             self.TABLERO.setPlayerPos(movement[0][0],movement[0][1],Players.PlayerNum)
 
-    def main(self):
-        self.CreatePlayers()
-        self.TABLERO.createTable()
+    def caracter_game(self):
         while not self.Winner:
             self.ClearPantalla()
             self.TABLERO.viewTable()
-            print("Winner?:",self.Winner)
             Player = self.Players[0]
             self.Players.popleft()
-            print("turno de el jugador", Player.PlayerNum)
+            print("Turno de:", Player.PlayerNum)
             self.Turno(Player)
             self.Players.append(Player)
         self.TABLERO.viewTable()
-        print("Ya gano", Player.PlayerNum)
+        print("Winner Player:", Player.PlayerNum)
+    
+    def main(self):
+        self.caracter_game()
+        
+
+
 

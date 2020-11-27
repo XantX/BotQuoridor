@@ -9,6 +9,7 @@ class tabla():
             for j in range(self.h):
                 self.tablero[i][j].Padre = None
                 self.tablero[i][j].gC = 0
+
     def createTable(self):
         number = 0
         for xC in range(self.h):
