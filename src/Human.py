@@ -59,21 +59,38 @@ class Human(Player):
                     print("no se puede ir ahi")
 
     def setMuros(self, Tablero):
-        a, b = input("un muro entre los numeros de casilla N N :").split()
+        n = len(Tablero.tablero)
+        a, b = input("un muro entre los numeros de casilla N N parte 1:").split()
         a = int(a)
         b = int(b)
-        n = len(Tablero.tablero)
-        def valido():
+        
+
+        def valido1():
             if a < n*n and a >= 0 and b < n*n and b >= 0:
                 return True
             else:
                 return False
-        while not valido():
+        def valido2():
+            if c < n*n and c >= 0 and d < n*n and d >= 0:
+                return True
+            else:
+                return False
+        while not valido1():
             print("el par no es valido")
-            a, b = input("un muro entre los numeros de casilla N N :").split()
+            a, b = input("un muro entre los numeros de casilla N N parte 1:").split()
             a = int(a)
             b = int(b)
         Tablero.setWall(a, b)
+
+        c, d = input("un muro entre los numeros de casilla N N parte 2:").split()
+        c = int(c)
+        d = int(d)
+        while not valido2():
+            print("el par no es valido")
+            c, d = input("un muro entre los numeros de casilla N N parte 2:").split()
+            c = int(c)
+            d = int(d)
+        Tablero.setWall(c, d)
 # por factorizar
     def think(self, tablero):
         print("elige una opcion")

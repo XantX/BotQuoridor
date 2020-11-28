@@ -30,16 +30,23 @@ class tablero:
     def viewTable(self):
         b = ""
         agregado = False
+        PlayerNum = 0
         print(self.PlayerArrPos)
         for x in range(self.n):
             for y in range(self.n):
                 agregado= False
                 for i in self.PlayerArrPos:
                     if x == i[0] and y == i[1]:
-                        b += '#' + '\t'
+                        if PlayerNum == 0:
+                            b += '#' + '\t'
+                            PlayerNum = 1
+                        elif PlayerNum == 1:
+                            b += '$' + '\t'
+                            PlayerNum = 0
                         agregado = True
                 if not agregado:
                     b += str(self.tablero[x][y]) + '\t'
+
 
             print(b)
             b = ""

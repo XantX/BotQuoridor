@@ -4,7 +4,7 @@ from src.Human import *
 from src.BotAstar import *
 
 from collections import deque
-import pygame as pg
+#import pygame as pg
 import time 
 import os 
 import platform
@@ -50,7 +50,7 @@ class Game:
             self.TABLERO.viewTable()
             Player = self.Players[0]
             self.Players.popleft()
-            print("Turno de:", Player.PlayerNum)
+            print("Turno de:", '#' if Player.PlayerNum == 0 else '$')
             self.Turno(Player)
             self.Players.append(Player)
         self.TABLERO.viewTable()
