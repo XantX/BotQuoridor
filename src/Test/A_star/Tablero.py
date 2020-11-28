@@ -49,6 +49,7 @@ class tablero:
         if self.Matrix[NodeNum1][NodeNum2] == 1:
             return True
         return False
+
     def setPlayerPosinit(self, Xp, Yp):
         self.PlayerArrPos.append([Xp, Yp])
 
