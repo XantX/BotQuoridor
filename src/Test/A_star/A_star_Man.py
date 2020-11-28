@@ -36,30 +36,30 @@ class A_star:
             #print("Primero en salir",mat[Xg][Yg].NodeNumber)
             cSet[mat[Xg][Yg].NodeNumber] = True
             for i in range(4):
-                    if valid(i):
-                        if oSet.count(mat[Xg + dx[i]][Yg + dy[i]]):
-                            #print("Se le califico para update", mat[Xg + dx[i]][Yg + dy[i]])
-                            oSet.update(Ganador, mat[Xg + dx[i]][Yg + dy[i]])
-                        else:
-                            #Se quedo en el enlace de padres
-                            cas = mat[Xg + dx[i]][Yg + dy[i]] 
-                            cas.SethC(self.nEnd[0], self.nEnd[1], Ganador)
-                            #print("Hermano Infectado", mat[Xg + dx[i]][Yg + dy[i]].NodeNumber)
-                            if (Xg + dx[i]) == self.nEnd[0] and (Yg + dy[i]) == self.nEnd[1]:
-                                terminado = True
-                                Final = cas
-                                #print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
-                                #print("Encontrado")
-                                #print(Final.NodeNumber, Final.gC) 
-                                cPath = []  
-                                Path = Final.Padre
-                                cPath.append(Final)
-                                while Path.Padre != None:
-                                    #print(Path.NodeNumber, Path.gC)
-                                    cPath.append(Path)
-                                    Path = Path.Padre
-                                return cPath
-                            oSet.add(cas)
+                if valid(i):
+                    if oSet.count(mat[Xg + dx[i]][Yg + dy[i]]):
+                        #print("Se le califico para update", mat[Xg + dx[i]][Yg + dy[i]])
+                        oSet.update(Ganador, mat[Xg + dx[i]][Yg + dy[i]])
+                    else:
+                        #Se quedo en el enlace de padres
+                        cas = mat[Xg + dx[i]][Yg + dy[i]] 
+                        cas.SethC(self.nEnd[0], self.nEnd[1], Ganador)
+                        #print("Hermano Infectado", mat[Xg + dx[i]][Yg + dy[i]].NodeNumber)
+                        if (Xg + dx[i]) == self.nEnd[0] and (Yg + dy[i]) == self.nEnd[1]:
+                            terminado = True
+                            Final = cas
+                            #print("desde", self.nIn[0], self.nIn[1], "va hacia", self.nEnd[0], self.nEnd[1])
+                            #print("Encontrado")
+                            #print(Final.NodeNumber, Final.gC) 
+                            cPath = []  
+                            Path = Final.Padre
+                            cPath.append(Final)
+                            while Path.Padre != None:
+                                #print(Path.NodeNumber, Path.gC)
+                                cPath.append(Path)
+                                Path = Path.Padre
+                            return cPath
+                        oSet.add(cas)
 
         return False
 

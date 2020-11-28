@@ -1,52 +1,19 @@
-from src.Test.A_star.Tablero import * 
-class Human:
-    def __init__(self, num, xTb, yTb):
-        self.PlayerNum = num
-        self.X = 0 
-        self.Y = 0
-        self.xTb = xTb
-        self.yTb = yTb
-        self.NodeObjetive = []
-
-    def setXandSetY(self, x, y):
-        self.X = x
-        self.Y = y
-        self.NodeObjetive = self.SearchObjectives(self.X, self.Y)
-
-    def SearchObjectives(self, Xp, Yp):
-        if Xp == 0 and (Yp >= 0 and Yp < self.yTb):
-            Objetives = [(self.xTb - 1, y)for y in range(self.yTb)]
-
-        elif Xp == self.xTb - 1 and (Yp >= 0 and Yp < self.yTb):
-            Objetives = [(0, y)for y in range(self.yTb)]
-
-        elif  (Xp >= 0 and Xp < self.xTb)and Yp == 0:
-            Objetives = [(x, self.ytb - 1)for x in range(self.xTb)]
-
-        elif (Xp >= 0 and Xp < self.xTb) and Yp == self.yTb - 1:
-            Objetives = [(x, 0)for x in range(self.xTb)]
-
-        return Objetives
-
-    def Win(self):
-        for i in self.NodeObjetive:
-            if self.X == i[0] and self.Y == i[1]:
-                return True
-        return False
-    def move(self, tablero):
+# from Player.Player import *
+from src.Player.Player import *
+from src.tablero import * 
+class Human(Player):
+    def move(self, Tablero):
         dx = [-1, 0, 1, 0]
         dy = [0, 1, 0, -1]
-        n = len(tablero.mat)
+        n = self.xTb 
         def valid(i):
             ConditionX = self.X + dx[i] < n and self.X + dx[i] >= 0
             ConditionY = self.Y + dy[i] < n and self.Y + dy[i] >= 0
 
-            if ConditionX and ConditionY:
-                print("entre al falso")
-                N1 = tablero.mat[self.X][self.Y].NodeNumber
-                N2 = tablero.mat[self.X + dx[i]][self.Y + dy[i]].NodeNumber
-                print("cruce en tablero",tablero.Cruce(N1, N2))
-                if tablero.Cruce(N1,N2):
+            if (ConditionX and ConditionY):
+                N1 = Tablero.tablero[self.X][self.Y]
+                N2 = Tablero.tablero[self.X + dx[i]][self.Y + dy[i]]
+                if Tablero.Matrix[N1][N2]:
                     return True
                 else:
                     return False
@@ -90,25 +57,42 @@ class Human:
                     validOpcion = True
                 else:
                     print("no se puede ir ahi")
-    def setMuros(self, tablero):
-        a, b = input("un muro entre los numeros de casilla N N :").split()
+
+    def setMuros(self, Tablero):
+        n = len(Tablero.tablero)
+        a, b = input("un muro entre los numeros de casilla N N parte 1:").split()
         a = int(a)
         b = int(b)
-        n = len(tablero.mat)
-        def valido():
+        
+
+        def valido1():
             if a < n*n and a >= 0 and b < n*n and b >= 0:
                 return True
             else:
                 return False
-        while not valido():
+        def valido2():
+            if c < n*n and c >= 0 and d < n*n and d >= 0:
+                return True
+            else:
+                return False
+        while not valido1():
             print("el par no es valido")
-            a, b = input("un muro entre los numeros de casilla N N :").split()
+            a, b = input("un muro entre los numeros de casilla N N parte 1:").split()
             a = int(a)
             b = int(b)
-        tablero.setWall(a, b)
+        Tablero.setWall(a, b)
 
+        c, d = input("un muro entre los numeros de casilla N N parte 2:").split()
+        c = int(c)
+        d = int(d)
+        while not valido2():
+            print("el par no es valido")
+            c, d = input("un muro entre los numeros de casilla N N parte 2:").split()
+            c = int(c)
+            d = int(d)
+        Tablero.setWall(c, d)
+# por factorizar
     def think(self, tablero):
-        
         print("elige una opcion")
         print("1) mover")
         print("2) muro")
@@ -126,18 +110,16 @@ class Human:
                 return ans, True
             else:
                 return ans, False
-            return ans 
         if opcion == "2":
             print("muro")
             self.setMuros(tablero)
             ans = (0, 0)
             
             return ans,False  
-            #return setMuro()
 
-
-#table = tablero(4, 4)
-#table.createTable()
-#HumanP = Human(0,4,4)
-#HumanP.setXandSetY(3,2)
-#HumanP.think(table)
+# n = 3
+# Humano = Human(1,n) 
+# Humano.setXandSetY(0, 1)
+# tab = tablero(3)
+# tab.viewTable()
+# Humano.think(tab)

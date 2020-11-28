@@ -6,7 +6,7 @@ Bot desarrollado para el curso de complejidad algorítmica
 
 * Sebastian Diaz Torres u201717471
 * Angie Tomasto Cahuana u201817853
-* Richard Cucho Landeo  u20181c448
+* Patrick Vieri Zurita Tenorio U201621873
 ___
 
 ## Enunciado
