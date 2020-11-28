@@ -36,7 +36,6 @@ class Game:
 
     def Turno(self, Players):
         movement = Players.think(self.TABLERO)
-        #self.TABLERO.RestartTable()
         print("movement", movement)
         if movement[1] == True:
             self.Winner = True
