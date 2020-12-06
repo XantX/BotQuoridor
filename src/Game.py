@@ -57,7 +57,3 @@ class Game:
     
     def main(self):
         self.caracter_game()
-        
-
-
-

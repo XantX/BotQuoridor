@@ -1,6 +1,7 @@
 from src.Algoritmos.Astar.Tablero import *
 # from Algoritmos.Astar.Tablero import *
 # from Tablero import *
+
 class A_star:
     def __init__(self, n):
         self.nIn = (0, 0)
